@@ -80,6 +80,40 @@ npm install
 # Start the development server
 npm run dev
 
+## 🎯 Lottery Data Explorer
+
+This project analyzes lottery winning numbers from [source/date].
+
+- 📊 Shows trends in number frequency
+- 🎱 Highlights hot and cold numbers
+- 🧠 Powered by data visualizations and interactive charts
+
+### 🧾 Sample Data
+
+| Draw Date | Number 1 | Number 2 | Number 3 | Number 4 | Number 5 |
+|-----------|----------|----------|----------|----------|----------|
+| 2024-01-01 | 12 | 23 | 34 | 45 | 56 |
+| 2024-01-08 | 05 | 11 | 23 | 34 | 50 |
+| 2024-01-15 | 01 | 07 | 19 | 25 | 37 |
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load your data
+df = pd.read_excel("a0239428-443e-4c25-a28d-7b4cd980da36.xlsx")
+
+# Flatten number columns
+numbers = df[['Number 1', 'Number 2', 'Number 3', 'Number 4', 'Number 5']].values.flatten()
+number_counts = pd.Series(numbers).value_counts().sort_index()
+
+# Plot
+plt.figure(figsize=(10, 6))
+number_counts.plot(kind='bar', color='orange')
+plt.title("🎱 Frequency of Lottery Numbers")
+plt.xlabel("Number")
+plt.ylabel("Frequency")
+plt.tight_layout()
+plt.savefig("charts/frequency.png")
 
 
 
